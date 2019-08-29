@@ -1,20 +1,20 @@
 import React from "react"
-import { CssBaseline } from "@material-ui/core"
+import { createMuiTheme, MuiThemeProvider, CssBaseline } from "@material-ui/core"
 import { Store } from "eztore"
 import reducers from "reducers"
-import useStyles from "./useStyles"
+import Dashboard from "components/Dashboard"
 
-const App = props => {
-    const classes = useStyles(props)
-    
-    return (
-        <Store reducers={reducers}>
+const theme = createMuiTheme({
+    spacing: factor => `${0.5 * factor}rem`,
+})
+
+const App = () => (
+    <Store reducers={reducers}>
+        <MuiThemeProvider theme={theme}>
             <CssBaseline />
-            <div className={classes.root}>
-
-            </div>
-        </Store>
-    )
-}
+            <Dashboard />
+        </MuiThemeProvider>
+    </Store>
+)
 
 export default App
