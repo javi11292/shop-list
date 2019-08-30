@@ -1,9 +1,9 @@
-class Item {
-    constructor({ id, name, inStock }) {
-        this.id = id || name.toLowerCase()
-        this.name = name
-        this.inStock = !!inStock
+function createItem({ name }) {
+    return {
+        id: name.toLowerCase(),
+        name,
+        inStock: false,
     }
 }
 
-export default Item
+export default createItem

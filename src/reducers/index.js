@@ -19,7 +19,7 @@ export default {
         reducer: itemsReducer,
     },
     filter: {
-        state: "",
-        reducer: (state, value) => value
-    }
+        state: { name: "" },
+        reducer: (state, value) => ({ ...state, ...value })
+    },
 }

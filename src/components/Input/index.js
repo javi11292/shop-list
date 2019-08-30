@@ -7,6 +7,7 @@ import useLogic from "./useLogic"
 const Input = React.memo(() => {
     const classes = useStyles()
     const { filter, updateFilter, addItem } = useLogic()
+    const { name } = filter
 
     return (
         <Paper className={classes.root}>
@@ -14,11 +15,11 @@ const Input = React.memo(() => {
                 <Menu />
             </IconButton>
             <InputBase
-                value={filter}
+                value={name}
                 onChange={updateFilter}
                 className={classes.input}
                 placeholder="Producto" />
-            <IconButton onClick={addItem} disabled={!filter}>
+            <IconButton onClick={addItem} disabled={!name}>
                 <AddCircle />
             </IconButton>
         </Paper>

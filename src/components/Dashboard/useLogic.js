@@ -1,14 +1,19 @@
 import { useEffect } from "react"
 import { useStore } from "eztore"
-import Item from "models/Item"
+import database from "libraries/database"
 
 function useLogic() {
     const dispatchItems = useStore("items", true)
 
     useEffect(() => {
-        Object.values(localStorage).forEach(item => {
-            dispatchItems({ action: "set", payload: new Item(JSON.parse(item)) })
-        })
+        async function initialize() {
+            const items = await database.items.toArray()
+            items.forEach(item => {
+                dispatchItems({ action: "set", payload: item })
+            })
+        }
+
+        initialize()
     }, [dispatchItems])
 }
 

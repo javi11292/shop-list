@@ -1,6 +1,5 @@
 import { useEffect, useCallback, useState } from "react"
 import { useStore } from "eztore"
-import Item from "models/Item"
 import useItemUpdater from "hooks/useItemUpdater"
 
 function useLogic() {
@@ -10,7 +9,7 @@ function useLogic() {
     const { addItem } = useItemUpdater()
 
     useEffect(() => {
-        const regExp = new RegExp(filter, "i")
+        const regExp = new RegExp(filter.name, "i")
         const filteredItems = Object.values(items).reduce((acc, item) => {
             if (item.name.match(regExp)) return [...acc, item]
             return acc
@@ -21,7 +20,7 @@ function useLogic() {
 
     const updateStock = useCallback(event => {
         const item = items[event.currentTarget.getAttribute("name")]
-        addItem(new Item({ ...item, inStock: !item.inStock }))
+        addItem({ ...item, inStock: !item.inStock })
     }, [items, addItem])
 
     return { items: filteredItems, updateStock }
