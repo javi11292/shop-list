@@ -6,21 +6,22 @@ import useLogic from "./useLogic"
 
 const Input = React.memo(() => {
     const classes = useStyles()
-    const { filter, updateFilter, addItem } = useLogic()
+    const { filter, updateFilter, addItem, toggleOpen, handleKeyDown } = useLogic()
     const { name } = filter
 
     return (
         <Paper className={classes.root}>
-            <IconButton>
+            <IconButton className={classes.menuIcon} onClick={toggleOpen}>
                 <Menu />
             </IconButton>
             <InputBase
                 value={name}
+                onKeyDown={handleKeyDown}
                 onChange={updateFilter}
                 className={classes.input}
                 placeholder="Producto" />
-            <IconButton onClick={addItem} disabled={!name}>
-                <AddCircle />
+            <IconButton onClick={addItem} disabled={!name} className={classes.addIcon}>
+                <AddCircle fontSize="large" />
             </IconButton>
         </Paper>
     )
