@@ -10,11 +10,15 @@ const ShopList = React.memo(() => {
     return (
         <List dense className={classes.root}>
             {items.map(item => (
-                <ListItem key={item.id} button>
+                <ListItem
+                    button
+                    key={item.id}
+                    name={item.id}
+                    onClick={updateStock}>
                     <ListItemText primary={item.name} />
                     <ListItemSecondaryAction>
                         <Checkbox
-                            id={item.id}
+                            name={item.id}
                             onChange={updateStock}
                             checked={item.inStock} />
                     </ListItemSecondaryAction>

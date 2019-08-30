@@ -20,7 +20,7 @@ function useLogic() {
     }, [items, filter])
 
     const updateStock = useCallback(event => {
-        const item = items[event.currentTarget.id]
+        const item = items[event.currentTarget.getAttribute("name")]
         addItem(new Item({ ...item, inStock: !item.inStock }))
     }, [items, addItem])
 
