@@ -8,9 +8,7 @@ function useLogic() {
     useEffect(() => {
         async function initialize() {
             const items = await database.items.toArray()
-            items.forEach(item => {
-                dispatchItems({ action: "set", payload: item })
-            })
+            dispatchItems({ action: "set", payload: items })
         }
 
         initialize()
