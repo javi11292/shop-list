@@ -13,7 +13,8 @@ function useLogic() {
 
     const updateItem = useCallback(() => {
         addItem(createItem({ name: filter.name }))
-    }, [addItem, filter])
+        setFilter({ name: "" })
+    }, [setFilter, addItem, filter])
 
     return { filter, updateFilter, addItem: updateItem }
 }

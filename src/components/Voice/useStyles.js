@@ -2,9 +2,10 @@ import { makeStyles } from "@material-ui/core"
 
 export default makeStyles(theme => ({
     root: {
-        position: "absolute",
+        display: "flex",
+    },
+    button: {
         margin: theme.spacing(2),
-        bottom: 0,
-        right: 0,
+        marginLeft: "auto"
     }
 }))
