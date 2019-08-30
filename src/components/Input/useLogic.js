@@ -1,20 +1,21 @@
 import { useCallback } from "react"
 import { useStore } from "eztore"
+import useItempUpdater from "hooks/useItemUpdater"
 import Item from "models/Item"
 
 function useLogic() {
     const [filter, setFilter] = useStore("filter")
-    const dispatchItems = useStore("items", true)
+    const { addItem } = useItempUpdater()
 
     const updateFilter = useCallback(event => {
         setFilter(event.target.value)
     }, [setFilter])
 
-    const addItem = useCallback(() => {
-        dispatchItems({ action: "set", payload: new Item({ name: filter }) })
-    }, [filter, dispatchItems])
+    const updateItem = useCallback(() => {
+        addItem(new Item({ name: filter }))
+    }, [addItem, filter])
 
-    return { filter, updateFilter, addItem }
+    return { filter, updateFilter, addItem: updateItem }
 }
 
 export default useLogic

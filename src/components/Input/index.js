@@ -18,7 +18,7 @@ const Input = React.memo(() => {
                 onChange={updateFilter}
                 className={classes.input}
                 placeholder="Product" />
-            <IconButton onClick={addItem}>
+            <IconButton onClick={addItem} disabled={!filter}>
                 <AddCircle />
             </IconButton>
         </Paper>
