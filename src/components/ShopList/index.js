@@ -16,7 +16,7 @@ const ShopList = React.memo(() => {
                         <Checkbox
                             id={item.id}
                             onChange={updateStock}
-                            checked={!item.inStock} />
+                            checked={item.inStock} />
                     </ListItemSecondaryAction>
                 </ListItem>
             ))}
