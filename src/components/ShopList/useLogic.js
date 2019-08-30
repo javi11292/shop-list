@@ -6,7 +6,8 @@ function useLogic() {
     const [filter] = useStore("filter")
     const [items] = useStore("items")
     const [filteredItems, setFilteredItems] = useState([])
-    const { addItem } = useItemUpdater()
+    const { addItem, deleteItem } = useItemUpdater()
+    const [anchor, setAnchor] = useState()
 
     useEffect(() => {
         const regExp = new RegExp(filter.name, "i")
@@ -23,7 +24,21 @@ function useLogic() {
         addItem({ ...item, inStock: !item.inStock })
     }, [items, addItem])
 
-    return { items: filteredItems, updateStock }
+    const openMenu = useCallback(event => {
+        setAnchor(event.currentTarget)
+    }, [])
+
+    const closeMenu = useCallback(() => {
+        setAnchor()
+    }, [])
+
+    const removeItem = useCallback(() => {
+        if (!anchor) return
+        deleteItem(items[anchor.getAttribute("name")])
+        closeMenu()
+    }, [deleteItem, items, anchor, closeMenu])
+
+    return { items: filteredItems, updateStock, openMenu, closeMenu, anchor, removeItem }
 }
 
 export default useLogic

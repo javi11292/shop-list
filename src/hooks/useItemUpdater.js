@@ -10,7 +10,12 @@ function useLogic() {
         dispatchItems({ action: "set", payload: item })
     }, [dispatchItems])
 
-    return { addItem }
+    const deleteItem = useCallback(item => {
+        database.items.delete(item.id)
+        dispatchItems({ action: "unset", payload: item })
+    }, [dispatchItems])
+
+    return { addItem, deleteItem }
 }
 
 export default useLogic
