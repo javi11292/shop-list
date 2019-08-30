@@ -1,8 +1,8 @@
 class Item {
     constructor({ id, name, inStock }) {
-        this.id = id
+        this.id = id || name.toLowerCase()
         this.name = name
-        this.inStock = inStock
+        this.inStock = !!inStock
     }
 }
 
