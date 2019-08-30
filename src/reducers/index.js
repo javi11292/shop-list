@@ -18,4 +18,8 @@ export default {
         state: {},
         reducer: itemsReducer,
     },
+    filter: {
+        state: "",
+        reducer: (state, value) => value
+    }
 }
