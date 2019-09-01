@@ -4,4 +4,7 @@ export default makeStyles(theme => ({
     title: {
         padding: theme.spacing(2),
     },
+    item: {
+        paddingRight: theme.spacing(10)
+    }
 }))

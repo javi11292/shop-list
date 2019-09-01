@@ -5,7 +5,7 @@ export default makeStyles(theme => ({
         display: "flex",
         alignItems: "center",
         margin: theme.spacing(2),
-        padding: theme.spacing(1),
+        padding: theme.spacing(0.75),
     },
     input: {
         flex: 1,

@@ -8,7 +8,7 @@ const Voice = React.memo(() => {
 
     return (
         <div className={classes.root}>
-            <Fab className={classes.button} size="small">
+            <Fab className={classes.button} size="medium">
                 <Mic />
             </Fab>
         </div>

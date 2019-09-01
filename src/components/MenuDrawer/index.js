@@ -1,6 +1,5 @@
 import React from "react"
-import { Drawer, List, ListItem, ListItemText, ListItemIcon, Typography, Divider } from "@material-ui/core"
-import { Edit } from "@material-ui/icons"
+import { Drawer, List, ListItem, ListItemText, ListItemSecondaryAction, Typography, Divider, Checkbox } from "@material-ui/core"
 import { useStore } from "eztore"
 import useStyles from "./useStyles"
 
@@ -13,9 +12,11 @@ const MenuDrawer = React.memo(() => {
             <Typography variant="h6" className={classes.title}>Shop List</Typography>
             <Divider />
             <List>
-                <ListItem button>
-                    <ListItemIcon><Edit /></ListItemIcon>
-                    <ListItemText primary="Test" />
+                <ListItem className={classes.item}>
+                    <ListItemText primary="Mostrar todo" />
+                    <ListItemSecondaryAction>
+                        <Checkbox />
+                    </ListItemSecondaryAction>
                 </ListItem>
             </List>
         </Drawer>
