@@ -8,5 +8,6 @@ export default makeStyles(theme => ({
     button: {
         margin: theme.spacing(2),
         marginLeft: "auto",
+        color: props => props.isBuying ? "red" : "green"
     },
 }))

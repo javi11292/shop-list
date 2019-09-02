@@ -24,11 +24,7 @@ export default {
         reducer: itemsReducer,
     },
     filter: {
-        state: { name: "" , isBuying: false},
+        state: { name: "", isBuying: false },
         reducer: (state, value) => ({ ...state, ...value })
-    },
-    isDrawerOpen: {
-        state: false,
-        reducer: state => !state
     },
 }

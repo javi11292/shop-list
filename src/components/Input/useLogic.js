@@ -6,7 +6,6 @@ import createItem from "models/Item"
 function useLogic() {
     const [filter, setFilter] = useStore("filter")
     const { addItem } = useItempUpdater()
-    const toggleOpen = useStore("isDrawerOpen", true)
 
     const updateFilter = useCallback(event => {
         setFilter({ name: event.target.value })
@@ -22,7 +21,7 @@ function useLogic() {
         if (event.key === "Enter") updateItem()
     }, [updateItem])
 
-    return { filter, updateFilter, addItem: updateItem, toggleOpen, handleKeyDown }
+    return { filter, updateFilter, addItem: updateItem, handleKeyDown }
 }
 
 export default useLogic
