@@ -3,12 +3,12 @@
     "name": "Shop List",
     "icons": [
         {
-            "src": "/icons/shop-list-192.png",
+            "src": "icons/shop-list-192.png",
             "type": "image/png",
             "sizes": "192x192"
         },
         {
-            "src": "/icons/shop-list-512.png",
+            "src": "icons/shop-list-512.png",
             "type": "image/png",
             "sizes": "512x512"
         }
