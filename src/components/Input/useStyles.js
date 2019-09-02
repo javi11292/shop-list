@@ -16,7 +16,4 @@ export default makeStyles(theme => ({
         padding: theme.spacing(0),
         color: "green",
     },
-    menuIcon: {
-        padding: theme.spacing(1)
-    }
 }))
