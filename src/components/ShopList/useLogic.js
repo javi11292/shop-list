@@ -43,7 +43,7 @@ function useLogic() {
         closeMenu()
     }, [deleteItem, items, anchor, closeMenu])
 
-    const classes = useStyles({ isBuying: filter.isBuying })
+    const classes = useStyles()
 
     return { items: filteredItems, updateStock, openMenu, closeMenu, anchor, removeItem, classes, timeout, isBuying }
 }
