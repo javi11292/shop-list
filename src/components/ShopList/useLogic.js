@@ -9,6 +9,7 @@ function useLogic() {
     const [filteredItems, setFilteredItems] = useState([])
     const { addItem, deleteItem } = useItemUpdater()
     const [anchor, setAnchor] = useState()
+    const [isBuying, setBuying] = useState(filter.isBuying)
 
     useEffect(() => {
         const regExp = new RegExp(filter.name, "i")
@@ -20,6 +21,7 @@ function useLogic() {
         if (!filteredItems.length && filter.isBuying) setFilter({ isBuying: false })
 
         setFilteredItems(filteredItems)
+        setBuying(filter.isBuying)
     }, [items, filter, setFilter])
 
     const updateStock = useCallback(event => {
@@ -43,7 +45,7 @@ function useLogic() {
 
     const classes = useStyles({ isBuying: filter.isBuying })
 
-    return { items: filteredItems, updateStock, openMenu, closeMenu, anchor, removeItem, classes, timeout, filter }
+    return { items: filteredItems, updateStock, openMenu, closeMenu, anchor, removeItem, classes, timeout, isBuying }
 }
 
 export default useLogic

@@ -6,7 +6,7 @@ import ItemWrapper from "components/ItemWrapper"
 import useLogic from "./useLogic"
 
 const ShopList = React.memo(() => {
-    const { items, updateStock, openMenu, closeMenu, anchor, removeItem, classes, timeout, filter } = useLogic()
+    const { items, updateStock, openMenu, closeMenu, anchor, removeItem, classes, timeout, isBuying } = useLogic()
 
     return (
         <React.Fragment>
@@ -21,7 +21,7 @@ const ShopList = React.memo(() => {
                 <TransitionGroup component={null}>
                     {items.map(item => (
                         <ItemWrapper
-                            isEnabled={!item.inStock && filter.isBuying}
+                            isEnabled={!item.inStock && isBuying}
                             key={item.id}
                             item={item}
                             classes={classes}
@@ -31,7 +31,7 @@ const ShopList = React.memo(() => {
                                 name={item.id}
                                 onClick={updateStock}>
                                 <Checkbox
-                                    className={filter.isBuying ? classes.hidden : undefined}
+                                    className={isBuying ? classes.hidden : undefined}
                                     color="primary"
                                     disableRipple
                                     checked={item.inStock} />
