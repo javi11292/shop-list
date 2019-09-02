@@ -1,6 +1,7 @@
 import { useEffect, useCallback, useState } from "react"
 import { useStore } from "eztore"
 import useItemUpdater from "hooks/useItemUpdater"
+import useStyles, { timeout } from "./useStyles"
 
 function useLogic() {
     const [filter, setFilter] = useStore("filter")
@@ -40,7 +41,9 @@ function useLogic() {
         closeMenu()
     }, [deleteItem, items, anchor, closeMenu])
 
-    return { items: filteredItems, updateStock, openMenu, closeMenu, anchor, removeItem }
+    const classes = useStyles({ isBuying: filter.isBuying })
+
+    return { items: filteredItems, updateStock, openMenu, closeMenu, anchor, removeItem, classes, timeout, filter }
 }
 
 export default useLogic

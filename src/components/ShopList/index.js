@@ -1,12 +1,12 @@
 import React from "react"
 import { List, ListItem, ListItemText, ListItemSecondaryAction, Checkbox, IconButton, Menu, MenuItem } from "@material-ui/core"
 import { MoreVert } from "@material-ui/icons"
+import { TransitionGroup } from "react-transition-group"
+import ItemWrapper from "components/ItemWrapper"
 import useLogic from "./useLogic"
-import useStyles from "./useStyles"
 
 const ShopList = React.memo(() => {
-    const classes = useStyles()
-    const { items, updateStock, openMenu, closeMenu, anchor, removeItem } = useLogic()
+    const { items, updateStock, openMenu, closeMenu, anchor, removeItem, classes, timeout, filter } = useLogic()
 
     return (
         <React.Fragment>
@@ -18,24 +18,33 @@ const ShopList = React.memo(() => {
                 <MenuItem onClick={removeItem}>Eliminar</MenuItem>
             </Menu>
             <List className={classes.root}>
-                {items.map(item => (
-                    <ListItem
-                        button
-                        key={item.id}
-                        name={item.id}
-                        onClick={updateStock}>
-                        <Checkbox
-                            color="primary"
-                            disableRipple
-                            checked={item.inStock} />
-                        <ListItemText primary={item.name} />
-                        <ListItemSecondaryAction>
-                            <IconButton onClick={openMenu} name={item.id}>
-                                <MoreVert />
-                            </IconButton>
-                        </ListItemSecondaryAction>
-                    </ListItem>
-                ))}
+                <TransitionGroup component={null}>
+                    {items.map(item => (
+                        <ItemWrapper
+                            isEnabled={!item.inStock && filter.isBuying}
+                            key={item.id}
+                            item={item}
+                            classes={classes}
+                            timeout={timeout}>
+                            <ListItem
+                                button
+                                name={item.id}
+                                onClick={updateStock}>
+                                <Checkbox
+                                    className={filter.isBuying ? classes.hidden : undefined}
+                                    color="primary"
+                                    disableRipple
+                                    checked={item.inStock} />
+                                <ListItemText primary={item.name} />
+                                <ListItemSecondaryAction>
+                                    <IconButton onClick={openMenu} name={item.id}>
+                                        <MoreVert />
+                                    </IconButton>
+                                </ListItemSecondaryAction>
+                            </ListItem>
+                        </ItemWrapper>
+                    ))}
+                </TransitionGroup>
             </List>
         </React.Fragment>
     )
