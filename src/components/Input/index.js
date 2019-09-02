@@ -1,12 +1,10 @@
 import React from "react"
 import { Paper, InputBase, IconButton } from "@material-ui/core"
 import { AddCircle } from "@material-ui/icons"
-import useStyles from "./useStyles"
 import useLogic from "./useLogic"
 
 const Input = React.memo(() => {
-    const classes = useStyles()
-    const { filter, updateFilter, addItem, handleKeyDown } = useLogic()
+    const { filter, updateFilter, addItem, handleKeyDown, classes, updateFocus } = useLogic()
     const { name } = filter
 
     return (
@@ -14,6 +12,8 @@ const Input = React.memo(() => {
             <InputBase
                 value={name}
                 onKeyDown={handleKeyDown}
+                onFocus={updateFocus(true)}
+                onBlur={updateFocus(false)}
                 onChange={updateFilter}
                 className={classes.input}
                 placeholder="Añadir producto" />

@@ -1,9 +1,11 @@
-import { useCallback } from "react"
+import { useState, useCallback } from "react"
 import { useStore } from "eztore"
 import useItempUpdater from "hooks/useItemUpdater"
 import createItem from "models/Item"
+import useStyles from "./useStyles"
 
 function useLogic() {
+    const [hasFocus, setFocus] = useState(false)
     const [filter, setFilter] = useStore("filter")
     const { addItem } = useItempUpdater()
 
@@ -21,7 +23,11 @@ function useLogic() {
         if (event.key === "Enter") updateItem()
     }, [updateItem])
 
-    return { filter, updateFilter, addItem: updateItem, handleKeyDown }
+    const updateFocus = useCallback(value => () => setFocus(value), [])
+
+    const classes = useStyles({ hasFocus })
+
+    return { filter, updateFilter, addItem: updateItem, handleKeyDown, updateFocus, classes }
 }
 
 export default useLogic
