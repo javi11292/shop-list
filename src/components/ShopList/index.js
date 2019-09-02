@@ -18,10 +18,9 @@ const ShopList = React.memo(() => {
                 <MenuItem onClick={removeItem}>Eliminar</MenuItem>
             </Menu>
             <List className={classes.root}>
-                <TransitionGroup component={null}>
+                <TransitionGroup component={null} exit={isBuying}>
                     {items.map(item => (
                         <ItemWrapper
-                            isEnabled={!item.inStock && isBuying}
                             key={item.id}
                             item={item}
                             classes={classes}
