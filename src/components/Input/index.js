@@ -19,7 +19,7 @@ const Input = React.memo(() => {
                 onKeyDown={handleKeyDown}
                 onChange={updateFilter}
                 className={classes.input}
-                placeholder="Producto" />
+                placeholder="Añadir producto" />
             <IconButton onClick={addItem} disabled={!name} className={classes.addIcon}>
                 <AddCircle fontSize="large" />
             </IconButton>
