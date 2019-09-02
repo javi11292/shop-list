@@ -3,18 +3,22 @@ import { useStore } from "eztore"
 import useItemUpdater from "hooks/useItemUpdater"
 
 function useLogic() {
-    const [filter] = useStore("filter")
+    const [filter, setFilter] = useStore("filter")
     const [items] = useStore("items")
     const [filteredItems, setFilteredItems] = useState([])
     const { addItem, deleteItem } = useItemUpdater()
     const [anchor, setAnchor] = useState()
 
     useEffect(() => {
+        if (!filteredItems.length) setFilter({ isBuying: false })
+    }, [filteredItems, setFilter])
+
+    useEffect(() => {
         const regExp = new RegExp(filter.name, "i")
         const filteredItems = Object.values(items).reduce((acc, item) => {
-            if (item.name.match(regExp)) return [...acc, item]
+            if (item.name.match(regExp) && (!filter.isBuying || !item.inStock)) return [...acc, item]
             return acc
-        }, [])
+        }, []).sort((a, b) => a.name.localeCompare(b.name))
 
         setFilteredItems(filteredItems)
     }, [items, filter])
