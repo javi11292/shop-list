@@ -10,18 +10,16 @@ function useLogic() {
     const [anchor, setAnchor] = useState()
 
     useEffect(() => {
-        if (!filteredItems.length) setFilter({ isBuying: false })
-    }, [filteredItems, setFilter])
-
-    useEffect(() => {
         const regExp = new RegExp(filter.name, "i")
         const filteredItems = Object.values(items).reduce((acc, item) => {
             if (item.name.match(regExp) && (!filter.isBuying || !item.inStock)) return [...acc, item]
             return acc
         }, []).sort((a, b) => a.name.localeCompare(b.name))
 
+        if (!filteredItems.length && filter.isBuying) setFilter({ isBuying: false })
+
         setFilteredItems(filteredItems)
-    }, [items, filter])
+    }, [items, filter, setFilter])
 
     const updateStock = useCallback(event => {
         const item = items[event.currentTarget.getAttribute("name")]
