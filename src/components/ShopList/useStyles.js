@@ -6,10 +6,11 @@ export default makeStyles(theme => ({
     root: {
         paddingTop: 0,
         flex: 1,
-        overflow: "auto",
+        overflowY: "auto",
+        overflowX: "hidden",
     },
     exit: {
-        transform: "scale(0)",
+        transform: "translateX(100%)",
         transition: `transform ${timeout}ms`
     },
     hidden: {

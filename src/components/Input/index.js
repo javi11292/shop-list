@@ -10,6 +10,7 @@ const Input = React.memo(() => {
     return (
         <Paper className={classes.root}>
             <InputBase
+                disabled={filter.isBuying}
                 value={name}
                 onKeyDown={handleKeyDown}
                 onFocus={updateFocus(true)}
@@ -17,7 +18,7 @@ const Input = React.memo(() => {
                 onChange={updateFilter}
                 className={classes.input}
                 placeholder="Añadir producto" />
-            <IconButton onClick={addItem} disabled={!name} className={classes.addIcon}>
+            <IconButton onClick={addItem} disabled={filter.isBuying || !name} className={classes.addIcon}>
                 <AddCircle fontSize="large" />
             </IconButton>
         </Paper>
